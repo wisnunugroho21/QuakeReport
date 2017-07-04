@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Quake Report</string>
+    <string name="distance_from_location">64 km N of</string>
+    <string name="location_preference">Arphigane, Northen Ariande Island</string>
+    <string name="date">Nov 22, 2015</string>
+    <string name="time">06 : 00 AM</string>
+    <string name="magnitude">6.4</string>
+    <string name="img_desc">just an example image</string>
+    <string name="stillLoading">Still Loading</string>
+    <string name="noConncection">No Internet Connection</string>
+    <string name="tryAgain">Try Again</string>
+    <string name="refresh">Refresh</string>
+</resources>
