@@ -8,9 +8,9 @@ import android.net.NetworkInfo;
  * Created by nugroho on 03/07/17.
  */
 
-public class NetworkConnectionChecker
+class NetworkConnectionChecker
 {
-    Context context;
+    private final Context context;
 
     public NetworkConnectionChecker(Context context)
     {
@@ -24,14 +24,6 @@ public class NetworkConnectionChecker
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        if(activeNetwork != null && activeNetwork.isConnected())
-        {
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        return activeNetwork != null && activeNetwork.isConnected();
     }
 }

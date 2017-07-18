@@ -1,9 +1,12 @@
 package com.example.android.quakereport.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 
 import com.example.android.quakereport.Adapter.MainQuakeListAdapter;
 import com.example.android.quakereport.Quake.GEOJSONURLSetter;
@@ -26,17 +30,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
 
-    RecyclerView recyclerView;
-    ProgressBar loadingDataProgressBar;
-    TextView loadingDataTextView;
-    TextView noInternetTextView;
-    Button tryAgainButton;
-    boolean menuItemVisibleState;
+    private RecyclerView recyclerView;
+    private ProgressBar loadingDataProgressBar;
+    private TextView loadingDataTextView;
+    private TextView noInternetTextView;
+    private Button tryAgainButton;
+    private boolean menuItemVisibleState;
 
-    ArrayList<QuakeData> quakeDataArrayList;
-    String mainQuakeURL;
+    private ArrayList<QuakeData> quakeDataArrayList;
+    private int maxMagnitude;
+    private int minMagnitude;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setVisibility(View.INVISIBLE);
 
-        mainQuakeURL = GEOJSONURLSetter.GetURL();
-        GetQuakeData();
+        SetInitialPreferences();
+        GetQuakeData(minMagnitude, maxMagnitude);
     }
 
     @Override
@@ -84,18 +90,58 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId())
         {
-            case R.id.item_menu_refresh : GetQuakeData(); return true;
+            case R.id.item_menu_refresh : GetQuakeData(minMagnitude, maxMagnitude); return true;
+            case R.id.item_menu_setting : GoToSetting(); return true;
             default: return super.onOptionsItemSelected(item);
         }
     }
 
-    void GetQuakeData()
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+    {
+        if(key.contains(getString(R.string.max_magnitude_key)) || key.contains(getString(R.string.min_magnitude_key)))
+        {
+            if(key.contains(getString(R.string.max_magnitude_key)))
+            {
+                maxMagnitude = Integer.parseInt(sharedPreferences.getString(key, "10"));
+            }
+
+            else
+            {
+                minMagnitude = Integer.parseInt(sharedPreferences.getString(key, "0"));
+            }
+
+            GetQuakeData(minMagnitude, maxMagnitude);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    private void SetInitialPreferences()
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        maxMagnitude = Integer.parseInt(sharedPreferences.getString(getString(R.string.max_magnitude_key), getString(R.string.max_magnitude_defaultkey)));
+        minMagnitude = Integer.parseInt(sharedPreferences.getString(getString(R.string.min_magnitude_key), getString(R.string.min_magnitude_defaultkey)));
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    private void GetQuakeData(int minMagnitude, int maxMagnitude)
     {
         QuakeDataGetterAsyncTask quakeDataGetterAsyncTask = new QuakeDataGetterAsyncTask(getApplicationContext());
+
+        String mainQuakeURL = GEOJSONURLSetter.GetURL(minMagnitude, maxMagnitude);
         quakeDataGetterAsyncTask.execute(mainQuakeURL);
     }
 
-    void SetRecyclerView()
+    private void SetRecyclerView()
     {
         MainQuakeListAdapter mainQuakeListAdapter = new MainQuakeListAdapter(quakeDataArrayList, this);
         recyclerView.setAdapter(mainQuakeListAdapter);
@@ -109,11 +155,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
     }
 
+    private void GoToSetting()
+    {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
+    }
+
     private class QuakeDataGetterAsyncTask extends AsyncTask<String, Void, ArrayList<QuakeData>>
     {
-        JSONHTTPReceiver jsonhttpReceiver;
-        QuakeDataJSONParser quakeDataJSONParser;
-        Context context;
+        final JSONHTTPReceiver jsonhttpReceiver;
+        final QuakeDataJSONParser quakeDataJSONParser;
+        final Context context;
 
         private QuakeDataGetterAsyncTask(Context context)
         {
@@ -197,9 +249,11 @@ public class MainActivity extends AppCompatActivity {
             noInternetTextView.setVisibility(View.INVISIBLE);
             tryAgainButton.setVisibility(View.INVISIBLE);
 
-            GetQuakeData();
+            GetQuakeData(minMagnitude, maxMagnitude);
         }
     }
+
+
 
 
 }

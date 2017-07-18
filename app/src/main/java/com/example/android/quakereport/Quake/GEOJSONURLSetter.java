@@ -9,12 +9,16 @@ import java.util.GregorianCalendar;
 
 public class GEOJSONURLSetter
 {
-    public static String GetURL()
+    public static String GetURL(int minMagnitude, int maxMagnitude)
     {
-        return "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=" + GetStartCurrentDateString() + "&endtime=" + GetEndCurrentDateString();
+        return "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime="
+                + GetStartCurrentDateString()
+                + "&endtime=" + GetEndCurrentDateString()
+                + "&minmagnitude=" + minMagnitude
+                + "&maxmagnitude=" + maxMagnitude;
     }
 
-    static String GetStartCurrentDateString()
+    private static String GetStartCurrentDateString()
     {
         Calendar calendar = GregorianCalendar.getInstance();
         String dateString = String.valueOf(calendar.get(Calendar.YEAR)) + "-";
@@ -48,7 +52,7 @@ public class GEOJSONURLSetter
         return  dateString;
     }
 
-    static String GetEndCurrentDateString()
+    private static String GetEndCurrentDateString()
     {
         Calendar calendar = GregorianCalendar.getInstance();
         String dateString = String.valueOf(calendar.get(Calendar.YEAR)) + "-";

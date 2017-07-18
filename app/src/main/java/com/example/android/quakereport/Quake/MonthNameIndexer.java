@@ -4,7 +4,7 @@ package com.example.android.quakereport.Quake;
  * Created by nugroho on 03/07/17.
  */
 
-public class MonthNameIndexer
+class MonthNameIndexer
 {
     public static String GetMonthName(int index)
     {

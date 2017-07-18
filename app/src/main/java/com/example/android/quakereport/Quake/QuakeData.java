@@ -8,10 +8,10 @@ import java.util.GregorianCalendar;
 
 public class QuakeData
 {
-    String urlQuake;
-    double quakeMagnitude;
-    String quakeLocation;
-    GregorianCalendar quakeDateTime;
+    private final String urlQuake;
+    private final double quakeMagnitude;
+    private final String quakeLocation;
+    private final GregorianCalendar quakeDateTime;
 
     public QuakeData(String urlQuake, double quakeMagnitude, String quakeLocation, GregorianCalendar quakeDateTime)
     {

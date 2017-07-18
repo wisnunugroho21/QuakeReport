@@ -4,7 +4,7 @@ package com.example.android.quakereport.Quake;
  * Created by nugroho on 03/07/17.
  */
 
-public class AM_PMIndexer
+class AM_PMIndexer
 {
     public static String GetAM_PM(int index)
     {

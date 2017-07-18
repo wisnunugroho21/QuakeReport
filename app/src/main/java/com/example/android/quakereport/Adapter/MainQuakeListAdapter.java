@@ -1,16 +1,12 @@
 package com.example.android.quakereport.Adapter;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.android.quakereport.Quake.AM_PMIndexer;
-import com.example.android.quakereport.Quake.MonthNameIndexer;
 import com.example.android.quakereport.Quake.QuakeCircleColor;
 import com.example.android.quakereport.Quake.QuakeData;
 import com.example.android.quakereport.EventListener.WebViewOnClickListener;
@@ -19,7 +15,6 @@ import com.example.android.quakereport.Quake.QuakeLocationTextViewSetter;
 import com.example.android.quakereport.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * Created by nugroho on 02/07/17.
@@ -27,8 +22,8 @@ import java.util.Calendar;
 
 public class MainQuakeListAdapter extends RecyclerView.Adapter<MainQuakeListViewHolder>
 {
-    ArrayList<QuakeData> quakeDataArrayList;
-    Context context;
+    private final ArrayList<QuakeData> quakeDataArrayList;
+    private final Context context;
 
     public MainQuakeListAdapter(ArrayList<QuakeData> quakeDataArrayList, Context context)
     {
@@ -58,15 +53,15 @@ public class MainQuakeListAdapter extends RecyclerView.Adapter<MainQuakeListView
 
 class MainQuakeListViewHolder extends RecyclerView.ViewHolder
 {
-    ArrayList<QuakeData> quakeDataArrayList;
-    Context context;
-    View itemView;
+    private final ArrayList<QuakeData> quakeDataArrayList;
+    private final Context context;
+    private final View itemView;
 
-    TextView magnitudeTextView;
-    TextView distanceLocationTextView;
-    TextView locationPreferenceTextView;
-    TextView dateTextView;
-    TextView timeTextView;
+    private final TextView magnitudeTextView;
+    private final TextView distanceLocationTextView;
+    private final TextView locationPreferenceTextView;
+    private final TextView dateTextView;
+    private final TextView timeTextView;
 
 
     public MainQuakeListViewHolder(View itemView, ArrayList<QuakeData> quakeDataArrayList, Context context)

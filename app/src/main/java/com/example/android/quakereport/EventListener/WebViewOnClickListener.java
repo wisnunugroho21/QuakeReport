@@ -1,6 +1,5 @@
 package com.example.android.quakereport.EventListener;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,8 +12,8 @@ import android.view.View;
 
 public class WebViewOnClickListener implements RecyclerView.OnClickListener
 {
-    String URL;
-    Context context;
+    private final String URL;
+    private final Context context;
 
     public WebViewOnClickListener(String URL, Context context)
     {

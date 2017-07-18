@@ -10,15 +10,6 @@ import java.util.Calendar;
 
 public class QuakeDateTimeTextViewSetter
 {
-    public QuakeDateTimeTextViewSetter(TextView dateTextView, TextView timeTextView, QuakeData quakeData) {
-        this.dateTextView = dateTextView;
-        this.timeTextView = timeTextView;
-        this.quakeData = quakeData;
-    }
-
-    TextView dateTextView;
-    TextView timeTextView;
-    QuakeData quakeData;
 
     public static void SetQuakeDateTimeTextView(TextView dateTextView, TextView timeTextView, QuakeData quakeData)
     {

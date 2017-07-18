@@ -19,14 +19,13 @@ public class QuakeCircleColor
         GradientDrawable magnitudeCircle = (GradientDrawable) textView.getBackground();
 
         // Get the appropriate background color based on the current earthquake magnitude
-        int magnitudeColor = colorResourceForMagnitudeImage;
 
         // Set the color on the magnitude circle
-        magnitudeCircle.setColor(ContextCompat.getColor(context, magnitudeColor));
+        magnitudeCircle.setColor(ContextCompat.getColor(context, colorResourceForMagnitudeImage));
     }
 
 
-    static int GetColorResourceForMagnitudeImage(double magnitude)
+    private static int GetColorResourceForMagnitudeImage(double magnitude)
     {
         if(magnitude >= 0 && magnitude < 2)
         {

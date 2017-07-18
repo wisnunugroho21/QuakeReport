@@ -1,13 +1,32 @@
 <resources>
     <string name="app_name">Quake Report</string>
-    <string name="distance_from_location">64 km N of</string>
-    <string name="location_preference">Arphigane, Northen Ariande Island</string>
-    <string name="date">Nov 22, 2015</string>
-    <string name="time">06 : 00 AM</string>
-    <string name="magnitude">6.4</string>
-    <string name="img_desc">just an example image</string>
     <string name="stillLoading">Still Loading</string>
     <string name="noConncection">No Internet Connection</string>
     <string name="tryAgain">Try Again</string>
     <string name="refresh">Refresh</string>
+    <string name="setting">Setting</string>
+
+    <!--Min Magnitude Preferences-->
+
+    <string name="min_magnitude_key">min_magnitude</string>
+    <string name="min_magnitude_title">Minimun Magnitude</string>
+    <string name="min_magnitude_defaultkey">0</string>
+
+    <string name="zero_number">0</string>
+    <string name="one_number">1</string>
+    <string name="two_number">2</string>
+    <string name="three_number">3</string>
+
+    <!--Max Magnitude Peferences-->
+
+    <string name="max_magnitude_key">max_magnitude</string>
+    <string name="max_magnitude_title">Maximum Magnitude</string>
+    <string name="max_magnitude_defaultkey">10</string>
+
+    <string name="ten_number">10</string>
+    <string name="nine_number">9</string>
+    <string name="eight_number">8</string>
+    <string name="seven_number">7</string>
+
+
 </resources>

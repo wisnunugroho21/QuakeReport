@@ -15,7 +15,7 @@ import com.example.android.quakereport.R;
 
 public class SimpleDividerItemDecoration extends RecyclerView.ItemDecoration
 {
-    private Drawable mDivider;
+    private final Drawable mDivider;
 
     public SimpleDividerItemDecoration(Context context)
     {
