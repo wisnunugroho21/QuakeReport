@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="@string/min_magnitude_defaultkey"
+        android:entries="@array/min_magnitude_numbers"
+        android:entryValues="@array/min_magnitude_numbers"
+        android:key="@string/min_magnitude_key"
+        android:summary="@string/min_magnitude_defaultkey"
+        android:title="@string/min_magnitude_title" />
+    <ListPreference
+        android:defaultValue="@string/max_magnitude_defaultkey"
+        android:entries="@array/max_magnitude_numbers"
+        android:entryValues="@array/max_magnitude_numbers"
+        android:key="@string/max_magnitude_key"
+        android:summary="@string/max_magnitude_defaultkey"
+        android:title="@string/max_magnitude_title" />
+
+</PreferenceScreen>

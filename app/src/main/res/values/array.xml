@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Min Magnitude Preference-->
+
+    <array name="min_magnitude_numbers">
+        <item>@string/zero_number</item>
+        <item>@string/one_number</item>
+        <item>@string/two_number</item>
+        <item>@string/three_number</item>
+    </array>
+
+    <!--Max Magnitude Preferences-->
+
+    <array name="max_magnitude_numbers">
+        <item>@string/ten_number</item>
+        <item>@string/nine_number</item>
+        <item>@string/eight_number</item>
+        <item>@string/seven_number</item>
+    </array>
+
+
+</resources>
